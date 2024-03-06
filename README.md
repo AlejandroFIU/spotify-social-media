@@ -1,5 +1,19 @@
 # Spotify Social Media Web Application
 
+## Project Structure
+
+### Frontend (React Application)
+
+Located in the ```spotify_social_media/``` directory
+
+### Backend (Java + Springboot API)
+
+Located in the ```SSMApplication/``` directory
+
+### Database (MySQL - Queries uses to setup the local database)
+
+Located in the ```database-setup-queries/``` directory
+
 ## Development Environment
 
 ### Pre-requisites
