@@ -1,11 +1,12 @@
 *{
   margin:0;
   padding:0;
+  
 }
 
 
 .login-body{
-  background-color: mintcream;
+  
 }
 
 .login-container{
@@ -32,14 +33,17 @@ label, input{
   height:20px;
   font-size: 20px;
   height:30px;
+  border-radius: 20px;
 }
 
 #login-btn:hover{
   background-color: darkgray;
+  
 }
 
 form{
+  position:absolute;
   padding:50px 10px 50px 10px;
-  border: 2px solid black;
   border-radius:10px;
+  box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
 }

@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin:0px;
+    padding:0px;
+}
+
+
+
+
+.navbar-container{
+    background-color:   #333333;
+   
+    position:sticky;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+}
+.navbar{
+    padding:10px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#add-icon{
+    color:white;
+    margin-right:0px;
+}
+
+.post-thread:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+}
+
+label {
+    margin-right:5px;
+    font-size:15px;
+}
+
+
+.post-thread{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    
+}
+
+.post-thread:hover{
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    
+}
+
+label{
+    margin-left:10px;
+}
+
+.search{
+    border:none;
+    display:flex;
+    align-items:center;
+    height:30px;
+    width: 300px;
+    background-color: white;
+    border-radius:20px;
+
+}
+
+#search-icon {
+   
+    color:grey;
+    margin-left:5px;;
+    margin-right:5px;
+
+}
+
+#search-box{
+   border:none;
+   font-size: 15px;
+
+}
+#search-box:focus {
+    outline: none;
+}
+
+#filter{ 
+    height:100%;
+    margin-left: auto;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-left: 1px solid black;
+    color:white;
+    background-color:#333333;
+    
+}
+
+#login-btn{
+    background-color: #333333;
+    border:none;
+    color:white;
+    font-size:15px;
+}
+#login-btn:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+}
+#filter-text{
+    margin:5px;
+    font-family: roboto;
+}
