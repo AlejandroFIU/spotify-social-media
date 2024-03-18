@@ -1,0 +1,44 @@
+#thread-border {
+   display:flex;
+   justify-content:flex-start ;
+   box-shadow: -5px 0px 5px -5px rgba(0,0,0,0.5), 5px 0px 5px -5px rgba(0,0,0,0.5);
+   width: 500px;
+   width:100%;
+   margin-bottom:10px;
+}
+
+
+#thread-border:hover{
+
+   background-color: #D7D7D7;
+}
+*{
+   margin: 0px;
+   padding: 0px;
+}
+#thread-img{
+   width:auto;
+   height:100%;
+   height: 100px;
+   padding: 0px;
+}
+ 
+
+
+#thread-container{
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 10px;
+   width:100%;
+   border-radius:10px;
+}
+p, label {
+   text-align: center;
+   font-size: 17px;
+}
+
+img{
+   display:block;
+}
