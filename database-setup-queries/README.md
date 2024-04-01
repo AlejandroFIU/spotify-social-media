@@ -59,3 +59,5 @@ Make sure to run this before the create tables.
 | users              |
 +--------------------+
 ```
+
+#### Insert the values into each table
