@@ -94,3 +94,20 @@ CREATE TABLE IF NOT EXISTS spotifysongcodes(
     CONSTRAINT songSK
         unique(song, songcode, songcovercode)
 );
+
+-- Insert values into the tables
+INSERT INTO users VALUES(
+    '1', 'Peter Clarke', 'clarkep@fiu.edu', 'clarkep', 'clarkep1234', '0', '0'
+);
+INSERT INTO users VALUES(
+    '2', 'Kevin Johnson', 'kjohns1972@gmail.com', 'kevinj72', 'kevinj1234', '0', '0'
+);
+INSERT INTO users VALUES(
+    '3', 'Kennedy Smith', 'swiftiefan1989@gmail.edu', 'swiftie', 'swiftie1234', '0', '1'
+);
+INSERT INTO users VALUES(
+    '4', 'Himothy Himersville', 'himothyh@gmail.com.edu', 'iamhim', 'iamhim1234', '0', '1'
+);
+INSERT INTO users VALUES(
+    '5', 'Sarah Caldwell', 'scaldwell@fiu.edu', 'scaldwell', 'scaldwell1234', '0', '0'
+);
