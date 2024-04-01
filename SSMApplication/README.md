@@ -1,9 +1,22 @@
 # SSMApplication API
 
+## How to run
+
+### intellij
+
+Run the SsmApplication.java file
+
+The localhost url is ```localhost:8080/```
+
+### Example
+
+The ```HelloController.java``` file is an simple example of how to get things started
+
 ## Dependencies
 
 [spotify-web-api-java](https://github.com/spotify-web-api-java/spotify-web-api-java)
 
 ## See Also
 
-[Spotify API](https://developer.spotify.com/)
+- [Spotify API](https://developer.spotify.com/)
+- [Setup Database Navigation](https://www.youtube.com/watch?v=V2bGKzvMQyc)
