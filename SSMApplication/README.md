@@ -19,4 +19,5 @@ The ```HelloController.java``` file is an simple example of how to get things st
 ## See Also
 
 - [Spotify API](https://developer.spotify.com/)
+- [Setup of REST API](https://www.youtube.com/watch?v=oO6HPVRqGvg)
 - [Setup Database Navigation](https://www.youtube.com/watch?v=V2bGKzvMQyc)
