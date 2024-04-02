@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS users;
 
 -- Create tables if they don't exist
 CREATE TABLE IF NOT EXISTS users(
-    userID INT NOT NULL,
+    userID INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(50) NOT NULL,
     username VARCHAR(30) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 CREATE TABLE IF NOT EXISTS posts(
-    postID INT NOT NULL,
+    postID INT NOT NULL AUTO_INCREMENT,
     userID INT NOT NULL,
     postText VARCHAR(255) NOT NULL,
     likes INT DEFAULT 0,
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS posts(
     artist VARCHAR(50),
     album VARCHAR(50),
     song VARCHAR(50),
+    isDeleted BIT DEFAULT 0,
     createdOn DATE,
     updateOn DATE,
     CONSTRAINT postsPK
@@ -44,12 +45,13 @@ CREATE TABLE IF NOT EXISTS posts(
 );
 
 CREATE TABLE IF NOT EXISTS replies(
-    replyID INT NOT NULL,
+    replyID INT NOT NULL AUTO_INCREMENT,
     postID INT NOT NULL,
     userID INT NOT NULL,
     replyText VARCHAR(255) NOT NULL,
     likes INT DEFAULT 0,
     dislikes INT DEFAULT 0,
+    isDeleted BIT DEFAULT 0,
     createdOn DATE,
     updateOn DATE,
     CONSTRAINT repliesPK
