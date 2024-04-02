@@ -34,7 +34,7 @@ public class UsersController {
         boolean isSilenced = false, isMod = false;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from users");
+            resultSet = statement.executeQuery("select * from users;");
             while (resultSet.next()) {
                 userID = resultSet.getInt("userID");
                 name = resultSet.getString("name");
