@@ -20,11 +20,6 @@ public class UsersController {
     private ResultSet resultSet;
     private Users user;
 
-//    public UsersController(){
-//        dbConnection = new DBConnection();
-//        connection = dbConnection.connectionFactory();
-//    }
-
     @GetMapping("/users/all")
     public @ResponseBody ArrayList<Users> getAllUsers() throws SQLException {
         dbConnection = new DBConnection();
