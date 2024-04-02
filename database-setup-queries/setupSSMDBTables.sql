@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS posts(
     album VARCHAR(50),
     song VARCHAR(50),
     isDeleted BIT DEFAULT 0,
-    createdOn DATE,
-    updateOn DATE,
+    createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateOn TIMESTAMP,
     CONSTRAINT postsPK
         PRIMARY KEY (postID),
     CONSTRAINT postsFK
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS replies(
     likes INT DEFAULT 0,
     dislikes INT DEFAULT 0,
     isDeleted BIT DEFAULT 0,
-    createdOn DATE,
-    updateOn DATE,
+    createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updateOn TIMESTAMP,
     CONSTRAINT repliesPK
         PRIMARY KEY (replyID),
     CONSTRAINT repliesuserFK
@@ -99,17 +99,25 @@ CREATE TABLE IF NOT EXISTS spotifysongcodes(
 
 -- Insert values into the tables
 INSERT INTO users VALUES(
-    '1', 'Peter Clarke', 'clarkep@fiu.edu', 'clarkep', 'clarkep1234', b'0', b'0'
+    '1', 'Peter Clarke', 'clarkep@fiu.edu', 'clarkep', 'clarkep1234', DEFAULT, DEFAULT
 );
 INSERT INTO users VALUES(
-    '2', 'Kevin Johnson', 'kjohns1972@gmail.com', 'kevinj72', 'kevinj1234', b'0', b'0'
+    '2', 'Kevin Johnson', 'kjohns1972@gmail.com', 'kevinj72', 'kevinj1234', DEFAULT, DEFAULT
 );
 INSERT INTO users VALUES(
-    '3', 'Kennedy Smith', 'swiftiefan1989@gmail.edu', 'swiftie', 'swiftie1234', b'0', b'1'
+    '3', 'Kennedy Smith', 'swiftiefan1989@gmail.edu', 'swiftie', 'swiftie1234', DEFAULT, b'1'
 );
 INSERT INTO users VALUES(
-    '4', 'Himothy Himersville', 'himothyh@gmail.com.edu', 'iamhim', 'iamhim1234', b'0', b'1'
+    '4', 'Himothy Himersville', 'himothyh@gmail.com.edu', 'iamhim', 'iamhim1234', DEFAULT, b'1'
 );
 INSERT INTO users VALUES(
-    '5', 'Sarah Caldwell', 'scaldwell@fiu.edu', 'scaldwell', 'scaldwell1234', b'0', b'0'
+    '5', 'Sarah Caldwell', 'scaldwell@fiu.edu', 'scaldwell', 'scaldwell1234', DEFAULT, DEFAULT
+);
+
+INSERT INTO posts VALUES(
+    '1', '3', 'Taylor can do no wrong OMG!!!', DEFAULT, DEFAULT, 'Taylor Swift', NULL, NULL, DEFAULT, DEFAULT, NULL
+);
+
+INSERT INTO replies VALUES(
+    '1', '1', '1', 'You are in for a rude awakening.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL
 );
