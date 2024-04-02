@@ -26,7 +26,7 @@ public class UsersController {
         connection = dbConnection.connectionFactory();
     }
 
-    @GetMapping("/users")
+    @GetMapping("/users/all")
     public @ResponseBody ArrayList<Users> getAllUsers() throws SQLException {
         ArrayList<Users> users = new ArrayList<Users>();
         int userID, silence, mod;
@@ -40,7 +40,7 @@ public class UsersController {
                 name = resultSet.getString("name");
                 email = resultSet.getString("email");
                 username = resultSet.getString("username");
-                password = resultSet.getString("name");
+                password = resultSet.getString("password");
                 silence = resultSet.getInt("isSilenced");
                 mod = resultSet.getInt("isMod");
                 if (silence == 1)
