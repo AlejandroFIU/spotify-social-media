@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS posts(
     song VARCHAR(50),
     isDeleted BIT DEFAULT 0,
     createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updateOn TIMESTAMP,
+    updatedOn TIMESTAMP,
     CONSTRAINT postsPK
         PRIMARY KEY (postID),
     CONSTRAINT postsFK
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS replies(
     dislikes INT DEFAULT 0,
     isDeleted BIT DEFAULT 0,
     createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updateOn TIMESTAMP,
+    updatedOn TIMESTAMP,
     CONSTRAINT repliesPK
         PRIMARY KEY (replyID),
     CONSTRAINT repliesuserFK
