@@ -27,3 +27,5 @@ The ```HelloController.java``` file is an simple example of how to get things st
 - [Setup Database Navigation](https://www.youtube.com/watch?v=V2bGKzvMQyc)
 - [URL Value Extraction](https://javainfinite.com/spring-boot/http-get-ways-to-form-url/)
 - [Postman Tutorial](https://learning.postman.com/docs/introduction/overview/)
+- [Spring JSON](https://www.baeldung.com/spring-boot-json)
+- [Spring HTTP Headers](https://www.baeldung.com/spring-rest-http-headers)
