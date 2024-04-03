@@ -2,10 +2,11 @@ package com.spotifysocialmedia.SSMApplication.Controllers;
 
 import com.spotifysocialmedia.SSMApplication.ConnectionFactory.DBConnection;
 import com.spotifysocialmedia.SSMApplication.Models.Users;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.apache.hc.core5.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,6 +20,45 @@ public class UsersController {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private Users user;
+
+    @GetMapping("users/validate")
+    public ResponseEntity<String> validateUserCredentials(@RequestHeader("username") String uname, @RequestHeader("password") String pword) throws SQLException{
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+        String username, password;
+        boolean isValid = false;
+        try {
+            preparedStatement = connection.prepareStatement("select username, password from users where username = ?;");
+            preparedStatement.clearParameters();
+            preparedStatement.setString(1, uname);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                username = resultSet.getString("username");
+                password = resultSet.getString("password");
+                if (username == null || password == null)
+                    return new ResponseEntity<>("failed", HttpStatusCode.valueOf(HttpStatus.SC_NOT_FOUND));
+
+                if (username.toLowerCase().trim().equals(uname.toLowerCase().trim()) && password.toLowerCase().trim().equals(pword.toLowerCase().trim()))
+                    isValid = true;
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+            if (connection != null)
+                connection.close();
+        }
+        if (!isValid)
+            return new ResponseEntity<>("failed", HttpStatusCode.valueOf(HttpStatus.SC_BAD_GATEWAY));
+
+        return new ResponseEntity<>("success", HttpStatusCode.valueOf(HttpStatus.SC_SUCCESS));
+    }
 
     @GetMapping("/users/all")
     public @ResponseBody ArrayList<Users> getAllUsers() throws SQLException {
