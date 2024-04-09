@@ -25,20 +25,20 @@ public class UsersController {
     public ResponseEntity<String> validateUserCredentials(@RequestHeader("username") String uname, @RequestHeader("password") String pword) throws SQLException{
         dbConnection = new DBConnection();
         connection = dbConnection.connectionFactory();
-        String username, password;
+        String username;
         boolean isValid = false;
         try {
-            preparedStatement = connection.prepareStatement("select username, password from users where username = ?;");
+            preparedStatement = connection.prepareStatement("select username from users where username = ? AND password = ?;");
             preparedStatement.clearParameters();
             preparedStatement.setString(1, uname);
+            preparedStatement.setString(2, pword);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 username = resultSet.getString("username");
-                password = resultSet.getString("password");
-                if (username == null || password == null)
+                if (username == null)
                     return new ResponseEntity<>("failed", HttpStatusCode.valueOf(HttpStatus.SC_NOT_FOUND));
 
-                if (username.toLowerCase().trim().equals(uname.toLowerCase().trim()) && password.toLowerCase().trim().equals(pword.toLowerCase().trim()))
+                if (username.toLowerCase().trim().equals(uname.toLowerCase().trim()))
                     isValid = true;
             }
             resultSet.close();
@@ -57,7 +57,7 @@ public class UsersController {
         if (!isValid)
             return new ResponseEntity<>("failed", HttpStatusCode.valueOf(HttpStatus.SC_BAD_GATEWAY));
 
-        return new ResponseEntity<>("success", HttpStatusCode.valueOf(HttpStatus.SC_SUCCESS));
+        return new ResponseEntity<>(uname, HttpStatusCode.valueOf(HttpStatus.SC_SUCCESS));
     }
 
     @GetMapping("/users/all")
