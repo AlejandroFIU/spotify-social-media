@@ -103,15 +103,57 @@ public class UsersController {
         return users;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/username/{uname}")
+    public @ResponseBody Users getUserByUsername(@PathVariable("uname") String uname) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+        int userID, silence, mod;
+        String name, email, username, password = "";
+        boolean isSilenced = false, isMod = false;
+        try {
+            preparedStatement = connection.prepareStatement("select userID, name, email, username, isSilenced, isMod from users where username = ?;");
+            preparedStatement.clearParameters();
+            preparedStatement.setString(1, uname);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                userID = resultSet.getInt("userID");
+                name = resultSet.getString("name");
+                email = resultSet.getString("email");
+                username = resultSet.getString("username");
+                silence = resultSet.getInt("isSilenced");
+                mod = resultSet.getInt("isMod");
+                if (silence == 1)
+                    isSilenced = true;
+                if (mod == 1)
+                    isMod = true;
+                user = new Users(userID, name, email, username, password, isSilenced, isMod);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+            if (connection != null)
+                connection.close();
+        }
+
+        return user;
+    }
+
+    @GetMapping("/users/userid/{id}")
     public @ResponseBody Users getUserById(@PathVariable("id") int id) throws SQLException {
         dbConnection = new DBConnection();
         connection = dbConnection.connectionFactory();
         int userID, silence, mod;
-        String name, email, username, password;
+        String name, email, username, password = "";
         boolean isSilenced = false, isMod = false;
         try {
-            preparedStatement = connection.prepareStatement("select * from users where userID = ?;");
+            preparedStatement = connection.prepareStatement("select userID, name, email, username, isSilenced, isMod from users where userID = ?;");
             preparedStatement.clearParameters();
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
@@ -120,7 +162,6 @@ public class UsersController {
                 name = resultSet.getString("name");
                 email = resultSet.getString("email");
                 username = resultSet.getString("username");
-                password = resultSet.getString("password");
                 silence = resultSet.getInt("isSilenced");
                 mod = resultSet.getInt("isMod");
                 if (silence == 1)
