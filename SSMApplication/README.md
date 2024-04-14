@@ -29,3 +29,5 @@ The ```HelloController.java``` file is an simple example of how to get things st
 - [Postman Tutorial](https://learning.postman.com/docs/introduction/overview/)
 - [Spring JSON](https://www.baeldung.com/spring-boot-json)
 - [Spring HTTP Headers](https://www.baeldung.com/spring-rest-http-headers)
+- [Spring Path Variables](https://www.baeldung.com/spring-pathvariable)
+- [Spring Header Variables](https://www.baeldung.com/spring-rest-http-headers)
