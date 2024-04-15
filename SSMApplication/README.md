@@ -8,9 +8,26 @@ Run the SsmApplication.java file
 
 The localhost url is ```localhost:8080/```
 
-### Example
+### JSON
 
-The ```HelloController.java``` file is an simple example of how to get things started
+#### Posts (POST request)
+
+#### Replies (POST request)
+
+```json
+        {
+            "replyID": 1,
+            "postID": 1,
+            "userID": 1,
+            "replyText": "I am serious.",
+            "likes": 0,
+            "dislikes": 0,
+            "createdOn": "2024-04-02",
+            "updatedOn": null,
+            "deleted": 0
+        }
+```
+
 
 ## Dependencies
 
