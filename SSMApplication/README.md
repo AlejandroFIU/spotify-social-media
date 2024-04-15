@@ -24,7 +24,7 @@ The localhost url is ```localhost:8080/```
         "song": null,
         "createdOn": "2024-04-15",
         "updatedOn": null,
-        "deleted": false
+        "deleted": 0
     }
 ```
 
