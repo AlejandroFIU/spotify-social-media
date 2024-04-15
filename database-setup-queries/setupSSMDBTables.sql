@@ -98,6 +98,8 @@ CREATE TABLE IF NOT EXISTS spotifysongcodes(
 );
 
 -- Insert values into the tables
+
+-- USERS Table
 INSERT INTO users VALUES(
     '1', 'Peter Clarke', 'clarkep@fiu.edu', 'clarkep', 'clarkep1234', DEFAULT, DEFAULT
 );
@@ -114,10 +116,20 @@ INSERT INTO users VALUES(
     '5', 'Sarah Caldwell', 'scaldwell@fiu.edu', 'scaldwell', 'scaldwell1234', DEFAULT, DEFAULT
 );
 
+-- POSTS Table
 INSERT INTO posts VALUES(
-    '1', '3', 'Taylor can do no wrong OMG!!!', DEFAULT, DEFAULT, 'Taylor Swift', NULL, NULL, DEFAULT, DEFAULT, NULL
+    DEFAULT, '3', 'Taylor can do no wrong OMG!!!', DEFAULT, DEFAULT, 'Taylor Swift', NULL, NULL, DEFAULT, DEFAULT, NULL
 );
 
+-- Replies Table
 INSERT INTO replies VALUES(
-    '1', '1', '1', 'You are in for a rude awakening.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL
+    DEFAULT, '1', '1', 'You are in for a rude awakening.', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL
 );
+
+-- SpotifyArtistTable
+
+
+-- SpotifyAlbumTable
+
+
+-- SpotifySongTable
