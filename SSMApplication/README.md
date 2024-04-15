@@ -12,6 +12,22 @@ The localhost url is ```localhost:8080/```
 
 #### Posts (POST request)
 
+```json
+    {
+        "postID": 1,
+        "userID": 3,
+        "postText": "Taylor can do no wrong OMG!!!",
+        "likes": 0,
+        "dislikes": 0,
+        "artist": "Taylor Swift",
+        "album": null,
+        "song": null,
+        "createdOn": "2024-04-15",
+        "updatedOn": null,
+        "deleted": false
+    }
+```
+
 #### Replies (POST request)
 
 ```json
