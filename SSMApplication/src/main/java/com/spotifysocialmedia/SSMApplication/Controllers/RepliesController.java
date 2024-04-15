@@ -2,10 +2,8 @@ package com.spotifysocialmedia.SSMApplication.Controllers;
 
 import com.spotifysocialmedia.SSMApplication.ConnectionFactory.DBConnection;
 import com.spotifysocialmedia.SSMApplication.Models.Replies;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -105,5 +103,53 @@ public class RepliesController {
         }
 
         return replies;
+    }
+
+
+    /*
+    * JSON Body
+    *   {
+            "replyID": 1,
+            "postID": 1,
+            "userID": 1,
+            "replyText": "I am serious.",
+            "likes": 0,
+            "dislikes": 0,
+            "createdOn": "2024-04-02",
+            "updatedOn": null,
+            "deleted": 0
+        }
+    * */
+    @PostMapping("replies/new/reply")
+    public ResponseEntity<Replies> postReply(@RequestBody Replies postReply) throws SQLException {
+        if (postReply == null)
+            return ResponseEntity.notFound().build();
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("INSERT INTO replies VALUES(\n" +
+                    "    DEFAULT, " + postReply.getPostID() + ", " + postReply.getUserID() + ", '" + postReply.getreplyText() + "', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL\n" +
+                    ");");
+            if (rowsAffected > 0){
+                System.out.println("Success");
+            }else{
+                System.out.println("Failed");
+            }
+            //resultSet.close();
+            statement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+
+        return ResponseEntity.ok(postReply);
     }
 }
