@@ -20,7 +20,7 @@ Located in the [```database-setup-queries/```](./database-setup-queries/README.m
 
 - NodeJS v18.18.0, npm v9.8.1
 
-- Java OPENJDK JDK/JRE v17
+- Java OPENJDK JDK/JRE v21
 
 - MySQL Server v5.7.38
 
@@ -62,7 +62,7 @@ Located in the [```database-setup-queries/```](./database-setup-queries/README.m
 
   - Select Maven or Gradle-Groovy(preferred)
 
-  - Select Java 17 and Spring Boot 3.2.3
+  - Select Java 21 and Spring Boot 3.2.3
 
   - Fill project values in form or leave default
 
