@@ -2,10 +2,8 @@ package com.spotifysocialmedia.SSMApplication.Controllers;
 
 import com.spotifysocialmedia.SSMApplication.ConnectionFactory.DBConnection;
 import com.spotifysocialmedia.SSMApplication.Models.Posts;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -201,5 +199,55 @@ public class PostsController {
         }
 
         return posts;
+    }
+
+    /*
+    JSON Body
+        {
+                "postID": 1,
+                "userID": 3,
+                "postText": "Taylor can do no wrong OMG!!!",
+                "likes": 0,
+                "dislikes": 0,
+                "artist": "Taylor Swift",
+                "album": null,
+                "song": null,
+                "createdOn": "2024-04-15",
+                "updatedOn": null,
+                "deleted": false
+        }
+    */
+
+    @PostMapping("posts/new/post")
+    public ResponseEntity<Posts> postReply(@RequestBody Posts postThread) throws SQLException {
+        if (postThread == null)
+            return ResponseEntity.notFound().build();
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("INSERT INTO posts VALUES(\n" +
+                    "    DEFAULT, " + postThread.getUserID() + ", '" + postThread.getPostText() + "', DEFAULT, DEFAULT, '"+ postThread.getArtist() +"', '"+ postThread.getAlbum() +"', '"+ postThread.getSong() +"', DEFAULT, DEFAULT, NULL\n" +
+                    ");");
+            if (rowsAffected > 0){
+                System.out.println("Success");
+            }else{
+                System.out.println("Failed");
+            }
+            //resultSet.close();
+            statement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+
+        return ResponseEntity.ok(postThread);
     }
 }
