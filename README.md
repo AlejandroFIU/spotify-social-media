@@ -4,15 +4,15 @@
 
 ### Frontend (React Application)
 
-Located in the ```spotify_social_media/``` directory
+Located in the [```spotify_social_media/```](./spotify_social_media/README.md) directory
 
 ### Backend (Java + Springboot API)
 
-Located in the ```SSMApplication/``` directory
+Located in the [```SSMApplication/```](./SSMApplication/README.md) directory
 
 ### Database (MySQL - Queries uses to setup the local database)
 
-Located in the ```database-setup-queries/``` directory
+Located in the [```database-setup-queries/```](./database-setup-queries/README.md) directory
 
 ## Development Environment
 
