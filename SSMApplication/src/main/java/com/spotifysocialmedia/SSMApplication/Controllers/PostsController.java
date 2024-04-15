@@ -109,7 +109,7 @@ public class PostsController {
         return posts;
     }
 
-    @GetMapping("posts/artist/{artistname}/album/{albumname}")
+    @GetMapping(value = "posts/album/{artistname}/{albumname}")
     public @ResponseBody ArrayList<Posts> getAllPostsByAlbum(@PathVariable("artistname") String artistName, @PathVariable("albumname") String albumName) throws SQLException {
         dbConnection = new DBConnection();
         connection = dbConnection.connectionFactory();
@@ -155,7 +155,7 @@ public class PostsController {
         return posts;
     }
 
-    @GetMapping("posts/artist/{artistname}/album/{songname}")
+    @GetMapping(value = "posts/song/{artistname}/{songname}")
     public @ResponseBody ArrayList<Posts> getAllPostsBySong(@PathVariable("artistname") String artistName, @PathVariable("songname") String songName) throws SQLException {
         dbConnection = new DBConnection();
         connection = dbConnection.connectionFactory();
