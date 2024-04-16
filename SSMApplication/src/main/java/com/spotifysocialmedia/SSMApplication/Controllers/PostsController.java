@@ -303,5 +303,32 @@ public class PostsController {
                 if (connection != null)
                     connection.close();
             }
+    }
+
+    @PutMapping("posts/delete/{postID}")
+    public void deletePostByID(@PathVariable("postID") int id) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update posts set isDeleted = 1 where postID = " + id + ";");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
         }
+    }
 }

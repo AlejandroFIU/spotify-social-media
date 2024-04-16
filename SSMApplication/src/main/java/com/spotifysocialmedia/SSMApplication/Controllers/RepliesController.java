@@ -207,4 +207,31 @@ public class RepliesController {
                 connection.close();
         }
     }
+
+    @PutMapping("replies/delete/{replyID}")
+    public void deleteReplyByID(@PathVariable("replyID") int id) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update replies set isDeleted = 1 where replyID = " + id + ";");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+    }
 }
