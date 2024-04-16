@@ -186,4 +186,34 @@ public class UsersController {
 
         return user;
     }
+
+    @PutMapping("users/moderator/silence/{username}/{isSilenced}")
+    public void userSilencing(@PathVariable("username") String username, @PathVariable("isSilenced") boolean silenced) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+        int isSilenced = 0;
+        if(silenced)
+            isSilenced = 1;
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update users set isSilenced = "+ isSilenced +" where username = '"+ username +"';");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            //resultSet.close();
+            statement.close();
+            connection.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+    }
 }
