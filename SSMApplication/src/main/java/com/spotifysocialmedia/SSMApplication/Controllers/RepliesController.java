@@ -28,7 +28,7 @@ public class RepliesController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from replies, users where users.isSilenced = 0 AND replies.isDeleted = 0;");
+            resultSet = statement.executeQuery("select * from replies inner join users on users.userid = replies.userid where users.isSilenced = 0 AND replies.isDeleted = 0;");
             while (resultSet.next()) {
                 replyID = resultSet.getInt("replyID");
                 postID = resultSet.getInt("postID");
@@ -72,7 +72,7 @@ public class RepliesController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from replies, users where users.isSilenced = 0 AND replies.postID = '" + id + "' AND replies.isDeleted = 0 order by createdOn desc;");
+            resultSet = statement.executeQuery("select * from replies inner join users on users.userid = replies.userid where users.isSilenced = 0 AND replies.postID = '" + id + "' AND replies.isDeleted = 0 order by createdOn desc;");
             while (resultSet.next()) {
                 replyID = resultSet.getInt("replyID");
                 postID = resultSet.getInt("postID");
