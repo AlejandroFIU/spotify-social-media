@@ -47,9 +47,9 @@ public class RepliesController {
             resultSet.close();
             statement.close();
             connection.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (statement != null)
@@ -72,7 +72,7 @@ public class RepliesController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from replies where postID = '" + id + "' order by createdOn desc;");
+            resultSet = statement.executeQuery("select * from replies, users where users.isSilenced = 0 AND replies.postID = '" + id + "' AND replies.isDeleted = 0 order by createdOn desc;");
             while (resultSet.next()) {
                 replyID = resultSet.getInt("replyID");
                 postID = resultSet.getInt("postID");
@@ -91,9 +91,9 @@ public class RepliesController {
             resultSet.close();
             statement.close();
             connection.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (statement != null)
@@ -131,17 +131,17 @@ public class RepliesController {
             int rowsAffected = statement.executeUpdate("INSERT INTO replies VALUES(\n" +
                     "    DEFAULT, " + postReply.getPostID() + ", " + postReply.getUserID() + ", '" + postReply.getreplyText() + "', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL\n" +
                     ");");
-            if (rowsAffected > 0){
+            if (rowsAffected > 0) {
                 System.out.println("Success");
-            }else{
+            } else {
                 System.out.println("Failed");
             }
             //resultSet.close();
             statement.close();
             connection.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (statement != null)
@@ -151,5 +151,60 @@ public class RepliesController {
         }
 
         return ResponseEntity.ok(postReply);
+    }
+
+    @PutMapping("replies/likes/{replyID}")
+    public void updateRLikes(@PathVariable("replyID") int rID) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update replies set likes = likes + 1 where replyID = " + rID + ";");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+    }
+
+
+    @PutMapping("replies/dislikes/{replyID}")
+    public void updateRDislikes(@PathVariable("replyID") int rID) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update replies set dislikes = dislikes + 1 where replyID = " + rID + ";");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
     }
 }
