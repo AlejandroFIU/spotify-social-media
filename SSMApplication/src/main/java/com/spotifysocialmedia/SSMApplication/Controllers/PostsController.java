@@ -250,4 +250,58 @@ public class PostsController {
 
         return ResponseEntity.ok(postThread);
     }
+
+    @PutMapping("posts/likes/{postID}")
+    public void updatePLikes(@PathVariable("postID") int pID) throws SQLException {
+        dbConnection = new DBConnection();
+        connection = dbConnection.connectionFactory();
+
+        try {
+            statement = connection.createStatement();
+            int rowsAffected = statement.executeUpdate("update posts set likes = likes + 1 where postID = " + pID + ";");
+            if (rowsAffected > 0) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failed");
+            }
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (statement != null)
+                statement.close();
+            if (connection != null)
+                connection.close();
+        }
+    }
+
+    @PutMapping("posts/dislikes/{postID}")
+    public void updatePDislikes(@PathVariable("postID") String pID) throws SQLException {
+            dbConnection = new DBConnection();
+            connection = dbConnection.connectionFactory();
+
+            try {
+                statement = connection.createStatement();
+                int rowsAffected = statement.executeUpdate("update posts set dislikes = dislikes + 1 where postID = " + pID + ";");
+                if (rowsAffected > 0) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failed");
+                }
+                statement.close();
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+                if (connection != null)
+                    connection.close();
+            }
+        }
 }
