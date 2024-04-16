@@ -28,7 +28,7 @@ public class PostsController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from posts;");
+            resultSet = statement.executeQuery("select * from posts, users where users.isSilenced = 0 AND posts.isDeleted = 0;");
             while (resultSet.next()) {
                 postID = resultSet.getInt("postID");
                 userID = resultSet.getInt("userID");
@@ -74,7 +74,7 @@ public class PostsController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from posts where artist = '" + artistName + "' order by createdOn desc;");
+            resultSet = statement.executeQuery("select * from posts, users where users.isSilenced = 0 AND posts.artist = '" + artistName + "' AND posts.isDeleted = 0 order by createdOn desc;");
             while (resultSet.next()) {
                 postID = resultSet.getInt("postID");
                 userID = resultSet.getInt("userID");
@@ -120,7 +120,7 @@ public class PostsController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from posts where artist = '" + artistName + "' AND album = '" + albumName +"' order by createdOn desc;");
+            resultSet = statement.executeQuery("select * from posts, users where users.isSilenced = 0 AND posts.artist = '" + artistName + "' AND posts.album = '" + albumName +"' AND posts.isDeleted = 0 order by createdOn desc;");
             while (resultSet.next()) {
                 postID = resultSet.getInt("postID");
                 userID = resultSet.getInt("userID");
@@ -166,7 +166,7 @@ public class PostsController {
         Date createdOn, updatedOn;
         try {
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("select * from posts where artist = '" + artistName + "' AND song = '" + songName +"' order by createdOn desc;");
+            resultSet = statement.executeQuery("select * from posts, users where users.isSilenced = 0 AND posts.artist = '" + artistName + "' AND posts.song = '" + songName +"' AND posts.isDeleted = 0 order by createdOn desc;");
             while (resultSet.next()) {
                 postID = resultSet.getInt("postID");
                 userID = resultSet.getInt("userID");
